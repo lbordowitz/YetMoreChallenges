@@ -37,3 +37,38 @@ In fact, No. The node ahead of _ST_ has _lonLe_ computed, So we do not need to r
 ![](7.png)
 
 Finally, we return max(lonLe) among all roots. In this case, the answer is 5.
+
+___
+
+As requested by grant, I am going to write a psuedo-code for the algorithm illustrated above.
+
+input: directed acyclic graph G, list of G's roots, curLe=0
+output: longest path from any route to any leaf, a.k.a given graph's diameter
+```
+findDiameter(graph G, list children, curLe):
+	for vertix in children:
+		if G.vertex.lonRo > curLe:
+			return G.vertix.lonLe + 1
+		G.vertix.lonRo=curLe
+		
+		if G.lonLe !=1: 	#already computed before
+			return G.vertix.lonLe + 1
+		
+		leafCou = findDiameter(G, vertix.children, curLe+1, &leafCou "passed by reference")
+		
+		G.vertix.lonLe = max(leafCou, G.vertix.lonLe)
+		return G.vertix.lonLe + 1
+	
+	return 0	
+```
+
+After completing traversing the graph, we output max found leaf
+
+```
+max = -1
+for vertix in G's roots:
+	if G.lonRo > max:
+		max = G.lonRo
+		
+output: max
+```
